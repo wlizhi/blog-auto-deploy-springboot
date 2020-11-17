@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.locks.LockSupport;
 
 public class OtherTest {
 	@Test
@@ -14,5 +15,6 @@ public class OtherTest {
 			final int x = i;
 			pool.execute(() -> System.out.println("hello" + x));
 		}
+		LockSupport.park();
 	}
 }

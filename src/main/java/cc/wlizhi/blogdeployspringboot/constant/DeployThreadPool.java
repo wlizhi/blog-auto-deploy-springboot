@@ -8,7 +8,7 @@ import java.util.concurrent.*;
 public class DeployThreadPool {
 	private static int deploySinglePoolThreadNameCounter;
 	public static ArrayBlockingQueue<Runnable> queue = new ArrayBlockingQueue<>(200);
-	private static final ThreadPoolExecutor DEPLOY_SINGLE_POOL = new ThreadPoolExecutor(1, 1, 30, TimeUnit.SECONDS,
+	private static final ThreadPoolExecutor DEPLOY_SINGLE_POOL = new ThreadPoolExecutor(1, 2, 30, TimeUnit.SECONDS,
 			queue, new DeployThreadFactory());
 
 	public static ExecutorService getDeploySinglePool() {
@@ -19,7 +19,9 @@ public class DeployThreadPool {
 
 		@Override
 		public Thread newThread(Runnable r) {
-			return new Thread("deploy-thread-" + ++deploySinglePoolThreadNameCounter);
+			Thread t = new Thread(r);
+			t.setName("deploy-thread-" + ++deploySinglePoolThreadNameCounter);
+			return t;
 		}
 	}
 }

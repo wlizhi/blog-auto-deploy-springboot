@@ -34,22 +34,17 @@ public class DeployServiceImpl implements DeployService {
 
 	@Override
 	public void deploy() {
-		// for (String command : shellCommandList) {
-		// 	try {
-		// 		Process exec = Runtime.getRuntime().exec(command);
-		// 		exec.waitFor();
-		// 	} catch (InterruptedException | IOException e) {
-		// 		log.warn(e.getMessage(), e);
-		// 	}
-		// }
 		ExecutorService pool = DeployThreadPool.getDeploySinglePool();
-		pool.execute(() -> {
+		pool.submit(() -> {
+			log.info("线程:[{}]收到任务，开始动态部署myblog...");
 			try {
 				for (String command : shellCommandList) {
 					Process exec = Runtime.getRuntime().exec(command);
 					exec.waitFor();
 				}
+				log.info("^_^动态部署完毕^_^");
 			} catch (IOException | InterruptedException e) {
+				log.warn("(⊙︿⊙)动态部署异常(⊙︿⊙)");
 				log.warn(e.getMessage(), e);
 			}
 		});

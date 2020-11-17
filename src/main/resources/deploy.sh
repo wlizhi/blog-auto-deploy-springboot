@@ -1,2 +1,2 @@
-cd /docker-data/nginx/html/myblog
-git pull origin master
+touch a.txt
+touch b.txt
