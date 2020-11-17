@@ -36,7 +36,7 @@ public class DeployServiceImpl implements DeployService {
 	public void deploy() {
 		ExecutorService pool = DeployThreadPool.getDeploySinglePool();
 		pool.submit(() -> {
-			log.info("线程:[{}]收到任务，开始动态部署myblog...");
+			log.info("线程:[{}]收到任务，开始动态部署myblog...", Thread.currentThread().getName());
 			try {
 				for (String command : shellCommandList) {
 					Process exec = Runtime.getRuntime().exec(command);
