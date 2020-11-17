@@ -28,4 +28,11 @@ public class DeployController {
 		deployService.deploy();
 		return ResModel.response(ResStatusEnum.R200,new Date());
 	}
+
+	@RequestMapping("/deployLoveIt")
+	public ResModel<?> deployLoveIt() {
+		log.info("收到github的请求，自动部署deployLoveIt...");
+		deployService.deploy();
+		return ResModel.response(ResStatusEnum.R200,new Date());
+	}
 }
