@@ -11,6 +11,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 public class BlogDeploySpringbootApplication {
 
 	public static void main(String[] args) {
+		// xx
 		SpringApplication.run(BlogDeploySpringbootApplication.class, args);
 	}
 

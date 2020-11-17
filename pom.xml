@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>cc.wlizhi</groupId>
-    <artifactId>blog-deploy-springboot</artifactId>
+    <artifactId>blog-auto-deploy-springboot</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>blog-deploy-springboot</name>
     <description>Demo project for Spring Boot</description>
