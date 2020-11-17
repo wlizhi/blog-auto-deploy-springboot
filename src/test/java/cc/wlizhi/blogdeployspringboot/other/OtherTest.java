@@ -1,22 +1,18 @@
 package cc.wlizhi.blogdeployspringboot.other;
 
+import cc.wlizhi.blogdeployspringboot.constant.DeployThreadPool;
 import org.junit.jupiter.api.Test;
 
-import java.io.*;
-import java.util.concurrent.locks.LockSupport;
+import java.io.IOException;
+import java.util.concurrent.ExecutorService;
 
 public class OtherTest {
 	@Test
 	public void executorTest() throws IOException {
-		Process exec = Runtime.getRuntime().exec("echo \"hello world\" >> a.txt");
-		InputStream rs = exec.getErrorStream();
-		InputStream is = exec.getInputStream();
-		OutputStream os = exec.getOutputStream();
-		BufferedReader brrs = new BufferedReader(new InputStreamReader(rs));
-		BufferedReader bris = new BufferedReader(new InputStreamReader(is));
-		System.out.println(brrs.readLine());
-		System.out.println(bris.readLine());
-		os.flush();
-		LockSupport.park(1000_000);
+		ExecutorService pool = DeployThreadPool.getDeploySinglePool();
+		for (int i = 0; i < 10; i++) {
+			final int x = i;
+			pool.execute(() -> System.out.println("hello" + x));
+		}
 	}
 }

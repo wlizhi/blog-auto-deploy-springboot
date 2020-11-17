@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -21,8 +22,8 @@ import java.util.concurrent.ExecutorService;
 public class DeployServiceImpl implements DeployService {
 	private final List<String> shellCommandList = new ArrayList<>();
 
-	@Override
-	public void init() throws IOException {
+	@PostConstruct
+	private void init() throws IOException {
 		ClassPathResource resource = new ClassPathResource("deploy.sh");
 		BufferedReader reader = new BufferedReader(new InputStreamReader(resource.getInputStream()));
 		String lineContent;
