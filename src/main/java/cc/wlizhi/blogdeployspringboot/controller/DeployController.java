@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
+import java.util.Map;
 
 /**
  * @author Eddie
@@ -23,9 +24,9 @@ public class DeployController {
 	DeployConfig deployConfig;
 
 	@RequestMapping("/deploy")
-	public ResModel<?> deploy() {
-		log.info("收到github的请求，自动部署myblog...");
+	public ResModel<?> deploy(Map<String, Object> paramMap) {
+		log.info("收到github的请求，参数内容:{},自动部署myblog...", paramMap);
 		deployService.deploy();
-		return ResModel.response(ResStatusEnum.R200,new Date());
+		return ResModel.response(ResStatusEnum.R200, new Date());
 	}
 }
