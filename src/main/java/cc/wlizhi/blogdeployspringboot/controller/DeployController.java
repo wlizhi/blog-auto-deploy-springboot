@@ -1,6 +1,5 @@
 package cc.wlizhi.blogdeployspringboot.controller;
 
-import cc.wlizhi.blogdeployspringboot.config.DeployConfig;
 import cc.wlizhi.blogdeployspringboot.constant.ResStatusEnum;
 import cc.wlizhi.blogdeployspringboot.model.ResModel;
 import cc.wlizhi.blogdeployspringboot.service.DeployService;
@@ -20,8 +19,6 @@ import java.util.Map;
 public class DeployController {
 	@Autowired
 	private DeployService deployService;
-	@Autowired
-	DeployConfig deployConfig;
 
 	@RequestMapping("/deploy")
 	public ResModel<?> deploy(Map<String, Object> paramMap) {
