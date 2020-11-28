@@ -35,7 +35,7 @@ public class DeployServiceImpl implements DeployService {
 	@Override
 	public void deploy() {
 		ExecutorService pool = DeployThreadPool.getDeploySinglePool();
-		pool.submit(() -> {
+		pool.execute(() -> {
 			log.info("线程:[{}]收到任务，开始动态部署...", Thread.currentThread().getName());
 			try {
 				for (String command : shellCommandList) {
